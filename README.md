@@ -22,7 +22,8 @@ Update with `claude plugin marketplace update cb-skills`, then `claude plugin up
 Each skill is a folder under `skills/` with a `SKILL.md`. To try changes without reinstalling, symlink the
 folder into `~/.claude/skills/`, then remove the link when you're done.
 
-Check the plugin before you push:
+Installed copies update only when `version` in `.claude-plugin/plugin.json` changes, so bump it with every
+change to a skill. Check the plugin before you push:
 
 ```bash
 claude plugin validate .
