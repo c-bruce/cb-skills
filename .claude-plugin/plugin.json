@@ -2,6 +2,7 @@
   "name": "cb-skills",
   "version": "0.1.1",
   "description": "Generic skills for Claude Code.",
+  "license": "MIT",
   "author": {
     "name": "Callum Bruce",
     "url": "https://github.com/c-bruce"
