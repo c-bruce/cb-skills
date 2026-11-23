@@ -1,0 +1,9 @@
+{
+  "name": "cb-skills",
+  "version": "0.1.0",
+  "description": "Generic skills for Claude Code.",
+  "author": {
+    "name": "Callum Bruce",
+    "url": "https://github.com/c-bruce"
+  }
+}

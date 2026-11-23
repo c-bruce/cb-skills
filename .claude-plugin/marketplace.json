@@ -1,0 +1,16 @@
+{
+  "$schema": "https://www.schemastore.org/claude-code-marketplace.json",
+  "name": "cb-skills",
+  "description": "Generic skills for Claude Code.",
+  "owner": {
+    "name": "Callum Bruce"
+  },
+  "plugins": [
+    {
+      "name": "cb-skills",
+      "description": "Generic skills for Claude Code.",
+      "source": "./",
+      "category": "productivity"
+    }
+  ]
+}
