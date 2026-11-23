@@ -16,15 +16,3 @@ Update with `claude plugin marketplace update cb-skills`, then `claude plugin up
 | Skill | Use it to |
 |---|---|
 | [`worktree`](skills/worktree/SKILL.md) | Set up a git worktree to start an issue, work on a PR or review one, and remove it when done. Configured per user and per repo: see [CONFIG.md](skills/worktree/CONFIG.md). |
-
-## Writing a skill
-
-Each skill is a folder under `skills/` with a `SKILL.md`. To try changes without reinstalling, symlink the
-folder into `~/.claude/skills/`, then remove the link when you're done.
-
-Installed copies update only when `version` in `.claude-plugin/plugin.json` changes, so bump it with every
-change to a skill. Check the plugin before you push:
-
-```bash
-claude plugin validate .
-```
