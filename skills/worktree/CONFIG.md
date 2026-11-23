@@ -16,7 +16,7 @@ A repo file is personal setup, so keep it out of version control unless the whol
 
 | Key | Default | Meaning |
 |---|---|---|
-| `branch_prefix` | none | Prefix for new issue branches, e.g. `cb/` |
+| `branch_prefix` | none | Prefix for new issue branches, e.g. `feature/` |
 | `worktree_dir` | `.claude/worktrees` | Where worktrees go, relative to the main checkout |
 | `base` | the branch `origin/HEAD` points to | What new issue branches start from |
 | `install` | from the lockfile, see below | Command that installs dependencies in a new worktree |
@@ -54,7 +54,7 @@ A new worktree has none of the main checkout's gitignored files. These are alway
 ### ports
 
 Each worktree takes a numbered slot `N`, from 1 to `slots`. The main checkout is slot 0 and uses the repo's
-usual ports. Inside the templates, `{N}` is the slot, and `{3000+N}`-style sums are worked out before
+usual ports. Inside the templates, `{N}` is the slot, and `{8000+N}`-style sums are worked out before
 writing.
 
 | Sub-key | Default | Meaning |
@@ -82,26 +82,26 @@ checkout shares.
 
 ```markdown
 ---
-branch_prefix: cb/
+branch_prefix: feature/
 open: code -n {path}
 ---
 ```
 
-`.claude/worktree.md` in a bun monorepo whose dev server and client both take ports:
+`.claude/worktree.md` in a repo whose API and web client both take ports:
 
 ```markdown
 ---
 ports:
-  slots: 4
+  slots: 3
   env: |
-    export PORT={3000+N}
-    export VITE_DEV_PORT={5173+N}
-    export VITE_SERVER_URL=http://localhost:{3000+N}
-  start: source .claude/worktree.env && bun dev
-  url: http://localhost:{5173+N}
+    export API_PORT={8000+N}
+    export WEB_PORT={8080+N}
+    export API_URL=http://localhost:{8000+N}
+  start: source .claude/worktree.env && npm run dev
+  url: http://localhost:{8080+N}
 warn_if_changed:
-  "packages/server/src/db/migrations/**": Every checkout shares one dev database, and `bun dev` migrates it.
+  "db/migrations/**": Every checkout shares one local database, and `npm run dev` migrates it.
 ---
 
-The server's dev CORS allowlist accepts clients only on ports 5174-5177, which caps the slots at 4.
+The API accepts requests only from web ports 8081-8083, which caps the slots at 3.
 ```
